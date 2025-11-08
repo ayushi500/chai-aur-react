@@ -9,11 +9,11 @@ function App() {
   const[charAllowed,setCharAllowed]=useState(false);
   const[password,setPassword]=useState("")  //setPassword mera password ko change krega
 
-
+ 
   //useRef Hook
   const passwordRef=useRef(null)  //default value is null
 
-  const passwordGenerator=useCallback(()=>{
+  const passwordGenerator=useCallback(()=>{   //we can also create password Generator without using useCallback,but for optimisation we use this
    let pass =""
    let str="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
    if (numberAllowed) str+="0123456789"
@@ -29,7 +29,7 @@ function App() {
 
 
   const copyPasswordToClipboard=useCallback(()=>{
-    passwordRef.current?.select();
+    passwordRef.current?.select();   //selects the text,which is present in light blue box
     passwordRef.current?.setSelectionRange(0,102)
     window.navigator.clipboard.writeText(password)   //meri react compile hogi js me and jha bhi ye run krega wha window object hoga,but in case of next js,there is server side rendering=>saara code server pe execute hota hai
   },[password])
